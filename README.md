@@ -16,43 +16,43 @@ This project focuses on analyzing layoff data from the Layoffs dataset using MyS
 
 1. Creating a Backup Table
 
-![image](https://github.com/user-attachments/assets/fedfe8f1-f154-4493-9490-78a37662f753)
+   ![image](https://github.com/user-attachments/assets/fedfe8f1-f154-4493-9490-78a37662f753)
 
-First, a duplicate table (layoff_staging) is created from the original layoffs table to ensure that if any mistakes occur during cleaning, we still have the original dataset.
+   First, a duplicate table (layoff_staging) is created from the original layoffs table to ensure that if any mistakes occur during cleaning, we still have the original dataset.
    
 2. Identifying and Removing Duplicate Records
 
-![image](https://github.com/user-attachments/assets/cc188c9d-9612-4cbf-af9e-23cbab0c2de3)
+   ![image](https://github.com/user-attachments/assets/cc188c9d-9612-4cbf-af9e-23cbab0c2de3)
 
-A Common Table Expression (CTE) (layoff_cte) is used to create a duplicates column, identifying duplicate records based on company, industry, total_laid_off, date, stage, country, and funds_raised_millions.
+   A Common Table Expression (CTE) (layoff_cte) is used to create a duplicates column, identifying duplicate records based on company, industry, total_laid_off, date, stage, country, and funds_raised_millions.
 
-![image](https://github.com/user-attachments/assets/7e030e0c-461f-4046-acf7-d09175842552)
+   ![image](https://github.com/user-attachments/assets/7e030e0c-461f-4046-acf7-d09175842552)
 
-A new table layoff_staging2 is created with an additional column (duplicates) to store duplicate identification.
+   A new table layoff_staging2 is created with an additional column (duplicates) to store duplicate identification.
 
-![image](https://github.com/user-attachments/assets/02c7df63-c08d-488d-8efd-746581f47125)
+   ![image](https://github.com/user-attachments/assets/02c7df63-c08d-488d-8efd-746581f47125)
 
-The duplicate rows (duplicates > 1) are deleted to remove redundancy.
+   The duplicate rows (duplicates > 1) are deleted to remove redundancy.
 
 3. Standardizing Data
 
-![image](https://github.com/user-attachments/assets/79daefa8-26b1-47a3-8f27-271059efb7b3)
-
-Checking for typos in categorical columns by using SELECT DISTINCT
-
-![image](https://github.com/user-attachments/assets/5259570e-1d29-4c63-8371-e3c09b4adc91)
-
-![image](https://github.com/user-attachments/assets/1e495228-4d1d-490e-a066-95e801367def)
-
-Standardizing values in the industry column:
-  -  Values like "CryptoCurrency" and "Crypto Currency" are replaced with "Crypto".
-  -  "United States." (with a period) is corrected to "United States".
+   ![image](https://github.com/user-attachments/assets/79daefa8-26b1-47a3-8f27-271059efb7b3)
+   
+   Checking for typos in categorical columns by using SELECT DISTINCT
+   
+   ![image](https://github.com/user-attachments/assets/5259570e-1d29-4c63-8371-e3c09b4adc91)
+   
+   ![image](https://github.com/user-attachments/assets/1e495228-4d1d-490e-a066-95e801367def)
+   
+   Standardizing values in the industry column:
+     -  Values like "CryptoCurrency" and "Crypto Currency" are replaced with "Crypto".
+     -  "United States." (with a period) is corrected to "United States".
 
 4. Fixing Date Format
 
-![image](https://github.com/user-attachments/assets/cc1acc1c-8023-485e-87bb-8c354b9f422e)
-
-The date column, initially stored as text, is converted into a proper DATE format using STR_TO_DATE(). The data type of the date column is then modified to DATE for accurate analysis.
+   ![image](https://github.com/user-attachments/assets/cc1acc1c-8023-485e-87bb-8c354b9f422e)
+   
+   The date column, initially stored as text, is converted into a proper DATE format using STR_TO_DATE(). The data type of the date column is then modified to DATE for accurate analysis.
    
 5. Handling Missing Values
 
@@ -134,11 +134,11 @@ The date column, initially stored as text, is converted into a proper DATE forma
 
 6. Cumulative (Rolling) Layoff Numbers Over Time
 
-   ![image](https://github.com/user-attachments/assets/17d4f9a8-24a8-41a0-a208-189a3c0e4fd9)
+   ![image](https://github.com/user-attachments/assets/e3c1d6e2-f4b1-4a1d-8d85-dd8be34c7620)
 
    This query calculates the cumulative number of layoffs from March 2020 to March 2023.
 
-   ![image](https://github.com/user-attachments/assets/991e7c2c-682d-4fc2-bcae-41cede8dd1f5)
+   ![image](https://github.com/user-attachments/assets/9a14fcbd-db7b-4168-8fa4-454d3dcb2d12)
    
 7. Identifying the Top 5 Companies with the Highest Layoffs per Year (2020-2023)
 
