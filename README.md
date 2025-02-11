@@ -1,4 +1,4 @@
-# **Layoffs Data Analysis** 
+# **Layoffs Data Analysis Using MySQL** 
 
 ## **Project Overview**
 
